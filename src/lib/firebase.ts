@@ -21,9 +21,14 @@ let storage = undefined as unknown as FirebaseStorage;
 if (typeof window !== "undefined" || process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
   try {
     app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-    auth = getAuth(app);
     db = getFirestore(app);
     storage = getStorage(app);
+
+    // Only initialize Auth on the client side
+    // This prevents unhandled promise rejections during Server Rendering on Vercel
+    if (typeof window !== "undefined") {
+      auth = getAuth(app);
+    }
   } catch (error) {
     console.error("Firebase initialization error", error);
   }
