@@ -1,67 +1,97 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { LayoutDashboard, Package, Users, Settings, LogOut, Tag } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Toaster } from "sonner";
 
-export default function AdminLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+const navItems = [
+    { href: "/admin/dashboard", icon: "dashboard", label: "Dashboard" },
+    { href: "/admin/orders", icon: "receipt_long", label: "Orders" },
+    { href: "/admin/products", icon: "inventory_2", label: "Inventory" },
+    { href: "/admin/offers", icon: "local_offer", label: "Offers & Pricing" },
+];
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     return (
-        <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950 text-gray-900 dark:text-gray-100 font-sans">
+        <div className="flex min-h-screen bg-[#0a0a0a] text-white font-sans overflow-hidden">
+
+            {/* Mobile Backdrop */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/80 z-40 md:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             {/* Sidebar */}
-            <aside className="w-64 bg-white dark:bg-zinc-900 border-r border-gray-200 dark:border-zinc-800 hidden md:flex flex-col">
-                <div className="p-6 h-16 flex items-center border-b border-gray-200 dark:border-zinc-800">
-                    <span className="text-xl font-serif font-bold text-parfumerie-gold">Parfumerie Admin</span>
+            <aside className={`w-56 bg-[#0f0f0f] border-r border-white/5 flex flex-col flex-shrink-0 transition-transform z-50 ${isSidebarOpen ? "fixed inset-y-0 left-0 translate-x-0" : "hidden md:flex md:static"} md:translate-x-0`}>
+                {/* Brand */}
+                <div className="p-5 border-b border-white/5">
+                    <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <span className="material-symbols-outlined text-black text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>spa</span>
+                        </div>
+                        <div>
+                            <p className="font-bold text-sm leading-none">Zuri Perfume</p>
+                            <p className="text-primary text-[9px] uppercase tracking-widest font-bold mt-0.5">Admin Console</p>
+                        </div>
+                    </div>
                 </div>
 
-                <nav className="flex-1 p-4 space-y-2">
-                    <Link href="/admin/dashboard" className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
-                        <LayoutDashboard className="w-5 h-5" />
-                        Dashboard
-                    </Link>
-                    <Link href="/admin/products" className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
-                        <Package className="w-5 h-5" />
-                        Inventory
-                    </Link>
-                    <Link href="/admin/orders" className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
-                        <Users className="w-5 h-5" />
-                        Orders
-                    </Link>
-                    <Link href="/admin/offers" className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
-                        <Tag className="w-5 h-5" />
-                        Offers & Pricing
-                    </Link>
+                {/* Nav */}
+                <nav className="flex-1 p-3 space-y-1">
+                    {navItems.map(({ href, icon, label }) => (
+                        <Link
+                            key={href}
+                            href={href}
+                            onClick={() => setIsSidebarOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group"
+                        >
+                            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">{icon}</span>
+                            {label}
+                        </Link>
+                    ))}
                 </nav>
 
-                <div className="p-4 border-t border-gray-200 dark:border-zinc-800">
-                    <Link href="/admin/login">
-                        <Button variant="ghost" className="w-full justify-start gap-3 hover:text-red-500 hover:bg-red-50">
-                            <LogOut className="w-5 h-5" />
-                            Logout
-                        </Button>
+                {/* Bottom */}
+                <div className="p-3 border-t border-white/5 space-y-1">
+                    <Link href="/admin/login"
+                        onClick={() => setIsSidebarOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-white/40 hover:text-red-400 hover:bg-red-500/5 transition-all">
+                        <span className="material-symbols-outlined text-[18px]">settings</span>
+                        Settings
                     </Link>
+                    <div className="flex items-center gap-3 px-4 py-3">
+                        <div className="w-7 h-7 bg-primary/20 rounded-full flex items-center justify-center text-primary text-xs font-bold">A</div>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold truncate">Admin</p>
+                            <p className="text-white/40 text-[10px] truncate">Store Manager</p>
+                        </div>
+                        <Link href="/admin/login">
+                            <span className="material-symbols-outlined text-white/30 hover:text-red-400 text-[16px] cursor-pointer transition-colors">logout</span>
+                        </Link>
+                    </div>
                 </div>
             </aside>
 
-            {/* Main Content */}
-            <main className="flex-1 flex flex-col">
-                {/* Mobile Header */}
-                <header className="h-16 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between px-6 md:hidden">
-                    <span className="font-serif font-bold">Parfumerie Admin</span>
-                    <Button variant="ghost" size="icon"><MenuIcon /></Button>
+            {/* Main */}
+            <main className="flex-1 flex flex-col min-w-0">
+                {/* Mobile header */}
+                <header className="h-14 bg-[#0f0f0f] border-b border-white/5 flex items-center justify-between px-5 md:hidden">
+                    <span className="font-bold text-sm">Zuri Admin</span>
+                    <button onClick={() => setIsSidebarOpen(true)}>
+                        <span className="material-symbols-outlined text-primary">menu</span>
+                    </button>
                 </header>
 
                 <div className="flex-1 p-6 md:p-8 overflow-auto">
                     {children}
                 </div>
             </main>
-            <Toaster position="top-right" richColors />
+
+            <Toaster position="top-right" richColors theme="dark" />
         </div>
     );
-}
-
-function MenuIcon() {
-    return <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
 }

@@ -9,14 +9,14 @@ import { Plus, Tag, Trash2 } from "lucide-react";
 type Offer = {
     id: string;
     code: string;
-    discount: string; // e.g. "20%" or "$10"
+    discount: string; // e.g. "20%" or "KSh 1000"
     status: "Active" | "Expired";
 };
 
 const initialOffers: Offer[] = [
     { id: "1", code: "WELCOME10", discount: "10%", status: "Active" },
     { id: "2", code: "SUMMER25", discount: "25%", status: "Expired" },
-    { id: "3", code: "GOLDVIP", discount: "$50", status: "Active" },
+    { id: "3", code: "GOLDVIP", discount: "KSh 5000", status: "Active" },
 ];
 
 export default function AdminOffersPage() {

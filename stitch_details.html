@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fragrance Product Details</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41152",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "surface-dark": "#331922",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for horizontal scrolling areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col pb-[80px]">
+<!-- Header / Navigation -->
+<div class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-surface-dark px-4 py-3 flex items-center justify-between">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+</button>
+<h1 class="text-sm font-bold uppercase tracking-widest text-slate-900 dark:text-slate-100">Eau de Parfum</h1>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors relative">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">shopping_bag</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary"></span>
+</button>
+</div>
+<!-- Product Image Hero -->
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-dark">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxury perfume bottle on dark background with rose petals" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFxoSQg2fZg7QBZ-uxhkHy7hZF6eeGLetqMIsCvNR7CTl6-5FIjjnW3CbpG4Dna9kUuXT-RLvbET_EJcfEPL17ken8pOFygR5n5V9y9aJf48O4FKMnpO0VEDrG0Uvc_91xrmuEQnouQaDMqI9Imjp6hIop5HpP5QL5HmQT06b-JkQUTuX_Kz0EfEf-7SHWsgVyA5wslE1KMEPg5gK4ERyDeHPl7SXwe1zYoATofG6fVtTkmybo8720uXqONh774u_MArU3KtA3t4I');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-90"></div>
+<!-- Floating Badges -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 bg-primary/90 backdrop-blur text-white text-xs font-bold uppercase tracking-wider rounded-full">Best Seller</span>
+<span class="px-3 py-1 bg-white/10 backdrop-blur text-white text-xs font-bold uppercase tracking-wider rounded-full">New</span>
+</div>
+</div>
+<!-- Product Info Section -->
+<div class="px-5 -mt-12 relative z-10">
+<div class="flex flex-col gap-1 mb-6">
+<h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">Velvet Rose <br/><span class="text-primary">&amp; Oud</span></h2>
+<div class="flex items-center justify-between mt-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium tracking-wide">INTENSE COLOGNE</p>
+<div class="flex items-center gap-1 bg-surface-light dark:bg-surface-dark px-2 py-1 rounded-lg border border-gray-200 dark:border-gray-800">
+<span class="material-symbols-outlined text-primary text-[18px] fill-1">star</span>
+<span class="text-sm font-bold">4.8</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 ml-1">(128)</span>
+</div>
+</div>
+</div>
+<!-- Price & Size Selector -->
+<div class="flex flex-col gap-4 mb-8 bg-white dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Select Size</span>
+<div class="flex gap-3 mt-2">
+<button class="px-4 py-2 rounded-lg border-2 border-primary bg-primary/10 text-primary font-bold text-sm">100ml</button>
+<button class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-slate-500 dark:text-slate-400 font-medium text-sm hover:border-primary hover:text-primary transition-colors">50ml</button>
+</div>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-bold text-slate-900 dark:text-white">$145.00</span>
+<span class="text-xs text-green-600 dark:text-green-400 font-medium">In Stock</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+                Add to Cart
+            </button>
+</div>
+<!-- Sensory Description -->
+<div class="mb-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">The Scent</h3>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                Darkest Damask rose. Wrapped with smoky oud wood. Spiked with clove, decadent with praline. Magnetic and luxurious. A scent that evolves with your skin chemistry, revealing layers of mystery and elegance throughout the day.
+            </p>
+</div>
+<!-- Scent Pyramid -->
+<div class="mb-10">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Olfactory Pyramid</h3>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 border border-gray-200 dark:border-gray-800 relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="space-y-6 relative z-10">
+<!-- Top Notes -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-black/30 flex items-center justify-center shrink-0 border border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-primary">local_florist</span>
+</div>
+<div class="flex-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block mb-1">Top Notes</span>
+<p class="text-slate-900 dark:text-white font-medium">Clove, Bergamot</p>
+</div>
+</div>
+<!-- Heart Notes -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-black/30 flex items-center justify-center shrink-0 border border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</div>
+<div class="flex-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block mb-1">Heart Notes</span>
+<p class="text-slate-900 dark:text-white font-medium">Damask Rose, Jasmine</p>
+</div>
+</div>
+<!-- Base Notes -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-black/30 flex items-center justify-center shrink-0 border border-gray-200 dark:border-gray-700">
+<span class="material-symbols-outlined text-primary">spa</span>
+</div>
+<div class="flex-1">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block mb-1">Base Notes</span>
+<p class="text-slate-900 dark:text-white font-medium">Oud Wood, Praline</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Complete the Routine -->
+<div class="mb-10">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Complete the Routine</h3>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
+<!-- Card 1 -->
+<div class="min-w-[140px] w-[140px] flex flex-col gap-2 group">
+<div class="w-full aspect-square rounded-lg bg-surface-dark overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Luxury body creme jar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAh8LUn4YqL_XtibXOmkrKYofkGul1xcWD-KQUh-AZ0TjIiZLiGPjPUrK8PJr0-1STnx8LK-1erBB9BZXSFp1wqdX71_7LPanNGwDG5sgtNlTTdFrOfRHS8NxUQQ5t-EmDdo7dTHbidZtNva9hp6YQyV0bmfu7VK7VWLzvhQubHg3KWg7KhY6Bcsa4pyQkKxVtSV3Zrx2NMq9sppZzf1TVL98Y0qy7f2zAebbg9PtnHdX6e6yh-NHo3ArS4Y4In0lv8hoHWa3SQ-fY');"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Body Crème</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">$85.00</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[140px] w-[140px] flex flex-col gap-2 group">
+<div class="w-full aspect-square rounded-lg bg-surface-dark overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Luxury home candle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnc8LXLfTmNLwKE0V2Yb_78LEmd7t7gnKz1YnXu4UgFarst4NqIfE96ujUO1n-tJ2YbzK1pe3nTy5ycLbASB3q3UroWJS3_P3J_ynxUyLCzofBg6-itiA0lmKvKBf1-5XXKIrD7DEyGBtBEekEstZusPvbht29BuLrt-tVZL2EdfbosCSQLNl8MH2O0RB45o3gBdgPF-NcR_oYejWyvhhXJxNY7akiWQXx8MmB0T7GXQ2YH7aqhc1uaXmciYDX3oEiAP0qloFBM0I');"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Home Candle</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">$65.00</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[140px] w-[140px] flex flex-col gap-2 group">
+<div class="w-full aspect-square rounded-lg bg-surface-dark overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Luxury hand wash bottle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC-iyzgqZoK4QluRI8uaRnwuS-P-D39j9wrmFvfeF4-I1nzJvr_CEhvN1OYXfH0fwaa3KO7IDghHB3O91OK3XQU4xCzwnF26E0EcWIeZ-oRX7T08MhthnuNCHf3h7TzaTvwG39pPhPlTsAbnOwu8bDAhODTgGrRV6epB7uEzMLSPOGzeXTJiSycfJtRqbnyANEApOZXtrb8N8sfF2ITVI2N0q20kZQxisAfM1WyW0e_fg_Hkmw8CSCQ0bmGI_8BNiWipnzr2Qnpf8');"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Body &amp; Hand Wash</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">$45.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Ratings & Reviews (Reused Component Structure) -->
+<div class="mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Customer Reviews</h3>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 border border-gray-200 dark:border-gray-800">
+<div class="flex flex-wrap gap-x-8 gap-y-6">
+<div class="flex flex-col gap-2">
+<p class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">4.8</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined text-primary text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-[18px]">star_half</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Based on 128 reviews</p>
+</div>
+<div class="grid min-w-[200px] flex-1 grid-cols-[20px_1fr_40px] items-center gap-y-3">
+<p class="text-slate-700 dark:text-slate-300 text-xs font-medium">5</p>
+<div class="flex h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-[#48232f]"><div class="rounded-full bg-primary" style="width: 80%;"></div></div>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-right">80%</p>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-medium">4</p>
+<div class="flex h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-[#48232f]"><div class="rounded-full bg-primary" style="width: 12%;"></div></div>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-right">12%</p>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-medium">3</p>
+<div class="flex h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-[#48232f]"><div class="rounded-full bg-primary" style="width: 5%;"></div></div>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-right">5%</p>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-medium">2</p>
+<div class="flex h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-[#48232f]"><div class="rounded-full bg-primary" style="width: 1%;"></div></div>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-right">1%</p>
+<p class="text-slate-700 dark:text-slate-300 text-xs font-medium">1</p>
+<div class="flex h-1.5 flex-1 overflow-hidden rounded-full bg-gray-200 dark:bg-[#48232f]"><div class="rounded-full bg-primary" style="width: 2%;"></div></div>
+<p class="text-slate-500 dark:text-slate-400 text-xs text-right">2%</p>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-black/20 transition-colors">Write a Review</button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 dark:border-surface-dark bg-background-light dark:bg-surface-dark px-4 pb-6 pt-2 shadow-2xl">
+<div class="flex gap-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-slate-400 dark:text-[#c992a4] hover:text-primary dark:hover:text-white group transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">storefront</span>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">Shop</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-[#c992a4] hover:text-primary dark:hover:text-white group transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">explore</span>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">Discover</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-[#c992a4] hover:text-primary dark:hover:text-white group transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">shopping_bag</span>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">Cart</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary dark:text-white" href="#">
+<span class="material-symbols-outlined text-[24px] scale-110 fill-1">account_circle</span>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">Account</p>
+</a>
+</div>
+</div>
+</body></html>

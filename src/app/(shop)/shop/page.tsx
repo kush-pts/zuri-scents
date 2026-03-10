@@ -1,94 +1,168 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { products, categories } from "@/lib/mock-data";
+import { categories } from "@/lib/mock-data";
+import { getProducts, getProductsByCategory } from "@/lib/firebase-service";
+import { ProductCard } from "@/components/shop/product-card";
+
+function FilterContent({ selectedCategory, selectedGender }: { selectedCategory?: string, selectedGender?: string }) {
+    return (
+        <>
+            {/* Collections */}
+            <div>
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-white/30 mb-4">COLLECTIONS</p>
+                <ul className="space-y-3">
+                    <li>
+                        <Link
+                            href="/shop"
+                            className={`text-sm transition-colors flex items-center gap-2.5 ${!selectedCategory ? 'font-bold text-primary' : 'text-white/50 hover:text-white'}`}
+                        >
+                            {!selectedCategory && <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />}
+                            All Fragrances
+                        </Link>
+                    </li>
+                    {categories.map((cat) => (
+                        <li key={cat.name}>
+                            <Link
+                                href={`/shop?category=${cat.name}`}
+                                className={`text-sm transition-colors flex items-center gap-2.5 ${selectedCategory === cat.name ? 'font-bold text-primary' : 'text-white/50 hover:text-white'}`}
+                            >
+                                {selectedCategory === cat.name && <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />}
+                                {cat.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* Gender */}
+            <div>
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-white/30 mb-4">GENDER</p>
+                <ul className="space-y-3">
+                    {["Male", "Female", "Unisex"].map((gender) => {
+                        const params = new URLSearchParams();
+                        if (selectedCategory) params.set('category', selectedCategory);
+                        if (selectedGender !== gender) params.set('gender', gender);
+                        const href = `/shop?${params.toString()}`;
+
+                        return (
+                            <li key={gender}>
+                                <Link
+                                    href={href}
+                                    className={`text-sm transition-colors flex items-center gap-2.5 ${selectedGender === gender ? 'font-bold text-primary' : 'text-white/50 hover:text-white'}`}
+                                >
+                                    {selectedGender === gender && <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />}
+                                    {gender} Fragrances
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+
+            {/* Price Range */}
+            <div>
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-white/30 mb-4">PRICE RANGE</p>
+                <div className="flex justify-between text-xs text-white/40 mb-3">
+                    <span>KES 0</span>
+                    <span>KES 30,000+</span>
+                </div>
+                <input type="range" className="w-full accent-primary appearance-none h-0.5 bg-white/10 rounded outline-none" />
+            </div>
+
+            {/* Size Filter */}
+            <div>
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-white/30 mb-4">SIZE</p>
+                <div className="flex gap-2">
+                    {["10ml", "100ml"].map((size) => (
+                        <button key={size} className="border border-white/10 text-white/50 text-[10px] font-bold uppercase px-3 py-1.5 rounded-lg hover:border-primary hover:text-primary transition-colors">
+                            {size}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+}
 
 export default async function ShopPage(props: {
-    searchParams: Promise<{ category?: string, sort?: string }>
+    searchParams: Promise<{ category?: string, sort?: string, gender?: string }>
 }) {
     const searchParams = await props.searchParams;
     const selectedCategory = searchParams.category;
+    const selectedGender = searchParams.gender;
 
-    // Basic filtering logic
-    let filteredProducts = products;
+    let preFilteredProducts;
     if (selectedCategory) {
-        filteredProducts = products.filter(p => p.scentProfile.toLowerCase() === selectedCategory?.toLowerCase() ||
-            categories.some(c => c.name.toLowerCase() === selectedCategory.toLowerCase() && p.scentProfile.includes(c.name)));
-        // Note: My mock data has "scentProfile" like "Floral", matching categories. 
-        // Just a simple match for now.
+        preFilteredProducts = await getProductsByCategory(selectedCategory);
+    } else {
+        preFilteredProducts = await getProducts();
     }
 
+    const filteredProducts = preFilteredProducts.filter(p => {
+        if (!selectedGender) return true;
+        return p.gender === selectedGender || p.gender === 'Unisex';
+    });
+
+
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row gap-8">
-                {/* Sidebar Filters */}
-                <aside className="w-full md:w-64 space-y-8">
-                    <div>
-                        <h3 className="text-lg font-serif font-semibold mb-4 text-parfumerie-gold">Categories</h3>
-                        <ul className="space-y-2">
-                            <li>
-                                <Link href="/shop" className={`text-sm hover:text-parfumerie-gold ${!selectedCategory ? 'font-bold text-parfumerie-gold' : 'text-parfumerie-gray'}`}>
-                                    All Fragrances
+        <div className="bg-[#0a0a0a] min-h-screen text-white font-sans">
+            <div className="max-w-screen-xl mx-auto px-5 sm:px-10 py-10">
+                {/* Header */}
+                <div className="mb-10 pb-7 border-b border-white/5">
+                    <h1 className="text-3xl md:text-4xl font-light mb-1">
+                        {selectedCategory ? (
+                            <>Shop <span className="font-serif italic text-primary">{selectedCategory}</span></>
+                        ) : (
+                            <>Our <span className="font-serif italic text-primary">Fragrances</span></>
+                        )}
+                    </h1>
+                    <p className="text-white/40 text-sm mt-1">
+                        {filteredProducts.length} masterfully crafted creations
+                    </p>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-10">
+                    {/* Mobile Filters Accordion */}
+                    <div className="md:hidden">
+                        <details className="group bg-[#111] border border-white/5 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden">
+                            <summary className="font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer text-white">
+                                Filter Collection
+                                <span className="material-symbols-outlined transition-transform duration-300 group-open:-rotate-180">expand_more</span>
+                            </summary>
+                            <div className="pt-6 space-y-8 border-t border-white/5 mt-4">
+                                <FilterContent selectedCategory={selectedCategory} selectedGender={selectedGender} />
+                            </div>
+                        </details>
+                    </div>
+
+                    {/* Desktop Sidebar */}
+                    <aside className="hidden md:block w-52 shrink-0 space-y-8">
+                        <FilterContent selectedCategory={selectedCategory} selectedGender={selectedGender} />
+                    </aside>
+
+
+                    {/* Grid */}
+                    <div className="flex-1">
+                        {filteredProducts.length === 0 ? (
+                            <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/5">
+                                <span className="material-symbols-outlined text-4xl text-white/20 mb-3 block">search_off</span>
+                                <p className="text-white/40 text-sm mb-5">No fragrances found in this collection.</p>
+                                <Link href="/shop">
+                                    <button className="border border-primary/40 text-primary text-[10px] font-extrabold uppercase tracking-widest px-6 py-3 rounded-full hover:bg-primary hover:text-black transition-all">
+                                        View All Fragrances
+                                    </button>
                                 </Link>
-                            </li>
-                            {categories.map((cat) => (
-                                <li key={cat.name}>
-                                    <Link href={`/shop?category=${cat.name}`} className={`text-sm hover:text-parfumerie-gold ${selectedCategory === cat.name ? 'font-bold text-parfumerie-gold' : 'text-parfumerie-gray'}`}>
-                                        {cat.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
+                                {filteredProducts.map((product) => (
+                                    <ProductCard
+                                        key={product.id}
+                                        product={{ ...product, imageUrl: product.image || '' }}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
-
-                    {/* Placeholder for more filters */}
-                    <div>
-                        <h3 className="text-lg font-serif font-semibold mb-4 text-parfumerie-gold">Price</h3>
-                        <div className="flex gap-2 text-sm text-parfumerie-gray">
-                            <span>$0</span> - <span>$300+</span>
-                        </div>
-                        <input type="range" className="w-full mt-2 accent-parfumerie-gold" />
-                    </div>
-                </aside>
-
-                {/* Product Grid */}
-                <div className="flex-1">
-                    <div className="flex justify-between items-center mb-6">
-                        <h1 className="text-2xl font-serif font-bold">{selectedCategory || "All Fragrances"}</h1>
-                        <span className="text-sm text-parfumerie-gray">{filteredProducts.length} Products</span>
-                    </div>
-
-                    {filteredProducts.length === 0 ? (
-                        <div className="text-center py-20 bg-gray-50 dark:bg-zinc-900 rounded-lg">
-                            <p className="text-parfumerie-gray">No perfumes found in this category.</p>
-                            <Button variant="link" className="mt-2 text-parfumerie-gold">Clear Filters</Button>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredProducts.map((product) => (
-                                <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 border-parfumerie-gold/10">
-                                    <div className="relative h-60 bg-gray-100 dark:bg-zinc-800 overflow-hidden rounded-t-lg">
-                                        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                                            [Image: {product.name}]
-                                        </div>
-                                    </div>
-                                    <CardHeader className="pb-2">
-                                        <p className="text-xs text-parfumerie-gold font-medium uppercase tracking-wider">{product.brand}</p>
-                                        <CardTitle className="text-lg">{product.name}</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pb-2">
-                                        <p className="text-sm text-parfumerie-gray line-clamp-2">{product.description}</p>
-                                    </CardContent>
-                                    <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100 dark:border-zinc-800">
-                                        <span className="font-serif font-semibold">${product.price}</span>
-                                        <Link href={`/product/${product.id}`}>
-                                            <Button size="sm" variant="secondary">Details</Button>
-                                        </Link>
-                                    </CardFooter>
-                                </Card>
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

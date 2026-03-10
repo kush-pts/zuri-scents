@@ -4,6 +4,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
+  --color-primary: #e0a81a;
+  --color-background-light: #f8f7f6;
+  --color-background-dark: #211d11;
+  --color-accent-green: #2d3a35;
+
   --color-parfumerie-gold: #D4AF37;
   --color-parfumerie-gold-light: #F3E5AB;
   --color-parfumerie-gold-dark: #AA8C2C;
@@ -13,19 +18,21 @@
 
   --font-serif: var(--font-playfair-display), serif;
   --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-manrope), sans-serif;
 }
 
 :root {
-  --background: #FAF9F6;
-  --foreground: #1A1A1A;
+  --background: #f8f7f6;
+  --foreground: #0f172a;
   --font-playfair-display: 'Playfair Display', serif;
   --font-inter: 'Inter', sans-serif;
+  --font-manrope: 'Manrope', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #211d11;
+    --foreground: #f1f5f9;
   }
 }
 
@@ -33,6 +40,20 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-sans);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 @keyframes fadeInUp {

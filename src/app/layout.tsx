@@ -1,10 +1,19 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Manrope, Playfair_Display, Inter } from "next/font/google";
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -13,9 +22,14 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Parfumerie | Exquisite Fragrances",
-  description: "Discover your perfect scent with our AI-powered fragrance recommender.",
+  title: "Zuri Scents - Discover Your Signature Fragrance",
+  description: "Experience the art of perfumery with Zuri Scents. AI-powered fragrance recommendations and curated luxury scents.",
 };
 
 export default function RootLayout({
@@ -24,13 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={cn(
-          inter.variable,
-          playfair.variable,
-          "antialiased min-h-screen bg-background font-sans text-foreground"
-        )}
+        className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} ${playfair.variable} ${inter.variable} antialiased font-display`}
       >
         {children}
       </body>

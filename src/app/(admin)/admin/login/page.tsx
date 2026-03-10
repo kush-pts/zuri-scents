@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 export default function AdminLogin() {
     const router = useRouter();
@@ -18,14 +20,24 @@ export default function AdminLogin() {
         e.preventDefault();
         setIsLoading(true);
 
-        // Mock delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        if (email === "admin@parfumerie.com" && password === "admin") {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
             toast.success("Welcome back, Admin");
             router.push("/admin/dashboard");
-        } else {
-            toast.error("Invalid credentials (Use: admin@parfumerie.com / admin)");
+        } catch (error: any) {
+            console.error("Login error:", error);
+            let errorMessage = "Failed to sign in";
+
+            if (error.code === 'auth/invalid-credential') {
+                errorMessage = "Invalid email or password";
+            } else if (error.code === 'auth/user-not-found') {
+                errorMessage = "User not found";
+            } else if (error.code === 'auth/wrong-password') {
+                errorMessage = "Incorrect password";
+            }
+
+            toast.error(errorMessage);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -53,7 +65,7 @@ export default function AdminLogin() {
                             <label className="text-sm font-medium">Password</label>
                             <Input
                                 type="password"
-                                placeholder="admin"
+                                placeholder="admin123"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -66,7 +78,7 @@ export default function AdminLogin() {
                     </form>
                 </CardContent>
                 <CardFooter className="justify-center">
-                    <p className="text-xs text-parfumerie-gray">Demo Credentials: admin@parfumerie.com / admin</p>
+                    <p className="text-xs text-parfumerie-gray">Demo Credentials: admin@parfumerie.com / admin123</p>
                 </CardFooter>
             </Card>
         </div>

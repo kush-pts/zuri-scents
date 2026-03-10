@@ -1,0 +1,73 @@
+
+[2026-02-27T13:29:16.998Z] Server Action Upload Error:
+{
+  "message": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "code": "storage/unknown",
+  "serverResponse": "",
+  "stack": "FirebaseError: Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "env": [
+    "NEXT_PUBLIC_FIREBASE_API_KEY",
+    "NEXT_PUBLIC_FIREBASE_APP_ID",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+    "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+    "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"
+  ],
+  "fullError": {
+    "code": "storage/unknown",
+    "customData": {
+      "serverResponse": ""
+    },
+    "name": "FirebaseError",
+    "status_": 404,
+    "_baseMessage": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)"
+  }
+}
+
+[2026-02-27T13:29:27.614Z] Server Action Upload Error:
+{
+  "message": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "code": "storage/unknown",
+  "serverResponse": "",
+  "stack": "FirebaseError: Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "env": [
+    "NEXT_PUBLIC_FIREBASE_API_KEY",
+    "NEXT_PUBLIC_FIREBASE_APP_ID",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+    "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+    "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"
+  ],
+  "fullError": {
+    "code": "storage/unknown",
+    "customData": {
+      "serverResponse": ""
+    },
+    "name": "FirebaseError",
+    "status_": 404,
+    "_baseMessage": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)"
+  }
+}
+
+[2026-02-27T13:32:52.514Z] Server Action Upload Error:
+{
+  "message": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "code": "storage/unknown",
+  "serverResponse": "",
+  "stack": "FirebaseError: Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)",
+  "env": {
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "zuri-scents",
+    "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET": "zuri-scents.firebasestorage.app"
+  },
+  "fullError": {
+    "code": "storage/unknown",
+    "customData": {
+      "serverResponse": ""
+    },
+    "name": "FirebaseError",
+    "status_": 404,
+    "_baseMessage": "Firebase Storage: An unknown error occurred, please check the error payload for server response. (storage/unknown)"
+  }
+}

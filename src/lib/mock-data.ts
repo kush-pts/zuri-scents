@@ -2,9 +2,12 @@ export type Product = {
     id: string;
     name: string;
     brand: string;
-    price: number;
+    price: number;         // 100ml price (main price)
+    price10ml?: number;    // 10ml bottle price
+    stockBottles?: number; // 100ml bottles currently in stock
+    sold10ml?: number;     // total 10ml units sold (tracked)
     description: string;
-    scentProfile: string; // e.g., Floral, Woody, Oriental
+    scentProfile: string;
     notes: {
         top: string[];
         heart: string[];
@@ -12,6 +15,7 @@ export type Product = {
     };
     image: string;
     isFeatured?: boolean;
+    gender?: 'Male' | 'Female' | 'Unisex';
 };
 
 export const products: Product[] = [
@@ -19,7 +23,10 @@ export const products: Product[] = [
         id: "1",
         name: "Golden Hour",
         brand: "Lumière",
-        price: 145,
+        price: 14500,
+        price10ml: 2500,
+        stockBottles: 24,
+        sold10ml: 38,
         description: "A radiant blend of citrus and warm woods, capturing the essence of the setting sun.",
         scentProfile: "Citrus",
         notes: {
@@ -34,7 +41,10 @@ export const products: Product[] = [
         id: "2",
         name: "Midnight Velvet",
         brand: "Noir Absolu",
-        price: 180,
+        price: 18000,
+        price10ml: 3200,
+        stockBottles: 12,
+        sold10ml: 61,
         description: "An intoxicating mix of dark florals and rich spices for the mysterious soul.",
         scentProfile: "Oriental",
         notes: {
@@ -49,7 +59,10 @@ export const products: Product[] = [
         id: "3",
         name: "Oceanic Drift",
         brand: "Aqua Pura",
-        price: 120,
+        price: 12000,
+        price10ml: 2000,
+        stockBottles: 3,
+        sold10ml: 19,
         description: "Crisp, clean, and refreshing. A breath of fresh sea air.",
         scentProfile: "Fresh",
         notes: {
@@ -58,12 +71,16 @@ export const products: Product[] = [
             base: ["White Musk", "Cedar"],
         },
         image: "/images/perfume-3.jpg",
+        isFeatured: true,
     },
     {
         id: "4",
         name: "Rose Éternelle",
         brand: "Maison Fleur",
-        price: 160,
+        price: 16000,
+        price10ml: 2800,
+        stockBottles: 18,
+        sold10ml: 45,
         description: "A timeless bouquet of roses, reimagined for the modern era.",
         scentProfile: "Floral",
         notes: {
@@ -78,7 +95,10 @@ export const products: Product[] = [
         id: "5",
         name: "Oud Mystique",
         brand: "Desert Winds",
-        price: 210,
+        price: 21000,
+        price10ml: 3800,
+        stockBottles: 2,
+        sold10ml: 84,
         description: "Deep, resinous, and commanding. A scent for those who lead.",
         scentProfile: "Woody",
         notes: {
