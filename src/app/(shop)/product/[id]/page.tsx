@@ -4,6 +4,8 @@ import { getProductById, getFeaturedProducts } from "@/lib/firebase-service";
 import { ProductCard } from "@/components/shop/product-card";
 import { SizeSelectorAndCart } from "@/components/shop/size-selector-cart";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const product = await getProductById(params.id);

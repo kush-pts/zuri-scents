@@ -3,6 +3,8 @@ import { categories } from "@/lib/mock-data";
 import { getProducts, getProductsByCategory } from "@/lib/firebase-service";
 import { ProductCard } from "@/components/shop/product-card";
 
+export const dynamic = "force-dynamic";
+
 function FilterContent({ selectedCategory, selectedGender }: { selectedCategory?: string, selectedGender?: string }) {
     return (
         <>

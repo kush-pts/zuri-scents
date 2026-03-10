@@ -3,6 +3,8 @@
 import { getDashboardStats } from "@/lib/firebase-service";
 import { getProducts } from "@/lib/firebase-service";
 
+export const dynamic = "force-dynamic";
+
 // Simple SVG line chart
 function SalesTrendChart() {
     const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"];
