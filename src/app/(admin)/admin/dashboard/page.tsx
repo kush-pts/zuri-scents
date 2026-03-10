@@ -1,4 +1,3 @@
-"use server";
 
 import { getDashboardStats } from "@/lib/firebase-service";
 import { getProducts } from "@/lib/firebase-service";
